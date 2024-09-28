@@ -1,16 +1,16 @@
+import type { LinksFunction } from '@remix-run/node';
 import {
   Form,
   Links,
   Meta,
   Scripts,
   ScrollRestoration,
-} from "@remix-run/react";
-import type { LinksFunction } from "@remix-run/node";
+} from '@remix-run/react';
 
-import appStylesHref from "./app.css?url";
+import appStylesHref from './app.css?url';
 
 export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: appStylesHref },
+  { rel: 'stylesheet', href: appStylesHref },
 ];
 
 export default function App() {
@@ -43,10 +43,10 @@ export default function App() {
           <nav>
             <ul>
               <li>
-                <a href={`/contacts/1`}>Your Name</a>
+                <a href={'/contacts/1'}>Your Name</a>
               </li>
               <li>
-                <a href={`/contacts/2`}>Your Friend</a>
+                <a href={'/contacts/2'}>Your Friend</a>
               </li>
             </ul>
           </nav>
