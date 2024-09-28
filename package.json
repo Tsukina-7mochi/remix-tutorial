@@ -6,7 +6,9 @@
   "scripts": {
     "build": "remix vite:build",
     "dev": "remix vite:dev",
-    "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
+    "check": "npx @biomejs/biome check",
+    "lint": "npx @biomejs/biome lint",
+    "format": "npx @biomejs/biome format",
     "start": "remix-serve build/server/index.js",
     "typecheck": "tsc"
   },
