@@ -12,6 +12,7 @@ import {
   useNavigation,
   useSubmit,
 } from '@remix-run/react';
+import type React from 'react';
 import { useEffect, useState } from 'react';
 import { createEmptyContact, getContacts } from './data';
 
@@ -38,6 +39,11 @@ export default function App() {
   const submit = useSubmit();
   const searching = navigation.location && new URLSearchParams(navigation.location.search).has('q');
 
+  const handleFormChange = (e: React.FormEvent<HTMLFormElement>) => {
+    const isFirstSearch = q === null;
+    submit(e.currentTarget, { replace: !isFirstSearch });
+  };
+
   useEffect(() => {
     setSearchInput(q ?? '');
   }, [q]);
@@ -54,7 +60,7 @@ export default function App() {
         <div id="sidebar">
           <h1>Remix Contacts</h1>
           <div>
-            <Form id="search-form" onChange={(e) => submit(e.currentTarget)} role="search">
+            <Form id="search-form" onChange={handleFormChange} role="search">
               <input
                 id="q"
                 aria-label="Search contacts"
