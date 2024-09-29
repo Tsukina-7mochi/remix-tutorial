@@ -1,22 +1,11 @@
 import { json } from '@remix-run/node';
 import type { LinksFunction } from '@remix-run/node';
-import {
-  Form,
-  Link,
-  Links,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-  useLoaderData,
-} from '@remix-run/react';
+import { Form, Link, Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from '@remix-run/react';
 import { createEmptyContact, getContacts } from './data';
 
 import appStylesHref from './app.css?url';
 
-export const links: LinksFunction = () => [
-  { rel: 'stylesheet', href: appStylesHref },
-];
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: appStylesHref }];
 
 export const loader = async () => {
   const contacts = await getContacts();
@@ -44,13 +33,7 @@ export default function App() {
           <h1>Remix Contacts</h1>
           <div>
             <Form id="search-form" role="search">
-              <input
-                id="q"
-                aria-label="Search contacts"
-                placeholder="Search"
-                type="search"
-                name="q"
-              />
+              <input id="q" aria-label="Search contacts" placeholder="Search" type="search" name="q" />
               <div id="search-spinner" aria-hidden hidden={true} />
             </Form>
             <Form method="post">

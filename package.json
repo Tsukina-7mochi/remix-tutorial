@@ -7,6 +7,7 @@
     "build": "remix vite:build",
     "dev": "remix vite:dev",
     "check": "npx @biomejs/biome check",
+    "check:write": "npx @biomejs/biome check --write",
     "lint": "npx @biomejs/biome lint",
     "format": "npx @biomejs/biome format",
     "start": "remix-serve build/server/index.js",

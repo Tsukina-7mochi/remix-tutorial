@@ -1,20 +1,20 @@
-import { json, LoaderFunctionArgs } from '@remix-run/node';
+import { type LoaderFunctionArgs, json } from '@remix-run/node';
 import { Form, useLoaderData } from '@remix-run/react';
 import type { FunctionComponent } from 'react';
 import invariant from 'tiny-invariant';
 
-import { ContactRecord, getContact } from '../data';
+import { type ContactRecord, getContact } from '../data';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  invariant(params.contactId, "Missing contactId param");
+  invariant(params.contactId, 'Missing contactId param');
 
   const contact = await getContact(params.contactId);
   if (!contact) {
-    throw new Response("Not Found", { status: 404 });
+    throw new Response('Not Found', { status: 404 });
   }
 
   return json({ contact });
-}
+};
 
 export default function Contact() {
   const { contact } = useLoaderData<typeof loader>();
@@ -22,11 +22,7 @@ export default function Contact() {
   return (
     <div id="contact">
       <div>
-        <img
-          alt={`${contact.first} ${contact.last} avatar`}
-          key={contact.avatar}
-          src={contact.avatar}
-        />
+        <img alt={`${contact.first} ${contact.last} avatar`} key={contact.avatar} src={contact.avatar} />
       </div>
 
       <div>
@@ -43,9 +39,7 @@ export default function Contact() {
 
         {contact.twitter ? (
           <p>
-            <a href={`https://twitter.com/${contact.twitter}`}>
-              {contact.twitter}
-            </a>
+            <a href={`https://twitter.com/${contact.twitter}`}>{contact.twitter}</a>
           </p>
         ) : null}
 
@@ -60,9 +54,7 @@ export default function Contact() {
             action="destroy"
             method="post"
             onSubmit={(event) => {
-              const response = confirm(
-                'Please confirm you want to delete this record.'
-              );
+              const response = confirm('Please confirm you want to delete this record.');
               if (!response) {
                 event.preventDefault();
               }
